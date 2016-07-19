@@ -1,0 +1,18 @@
+body
+{
+  color:white;
+  background-color: black;
+  font-family: 'Kadwa', serif;
+}
+h1
+{
+  font-size:50px;
+}
+.list
+{
+
+  border: ridge;
+  border-color: orange;
+  padding: 8px;
+  border-radius: 10px 10px 50px 50px;
+}
