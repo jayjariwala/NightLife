@@ -7,7 +7,9 @@ import org.json.simple.JSONObject;
 import com.jayjariwala.nightlife.MODEL.BarModel;
 
 public class BarBO {
-
+	
+	BarModel model;
+	ArrayList<BarModel> list=new ArrayList<BarModel>();;
 	public ArrayList<BarModel> getBarList(JSONArray Businesses)
 	{
 		for(int i=0;i< Businesses.size();i++)
@@ -19,16 +21,10 @@ public class BarBO {
 			JSONArray display_address= (JSONArray) address.get("display_address");
 			String BarID=(String) BarObject.get("id");
 			String BarImage=(String) BarObject.get("image_url");
-			
-		/*	System.out.println("Comment"+comments);
-			System.out.println("Rating URL:"+rating);
-			System.out.println("Address:"+display_address);
-			System.out.println("barID"+BarID);
-			System.out.println("Bar Image:"+BarImage);  */
-			
-			
-			
+			String name=(String)BarObject.get("name");
+			model=new BarModel( BarImage, name, comments, BarID, rating);
+			list.add(model);
 		}
-		return null;
+		return list;
 	}
 }

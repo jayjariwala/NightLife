@@ -4,18 +4,17 @@ public class BarModel {
 	
 	private String image,name,comment,id,street,city,state,rating;
 
+	public BarModel()
+	{
+	}
 
-
-	public BarModel(String image, String name, String comment, String id,
-			String street, String city, String state, String rating) {
+	public BarModel(String image, String name, String comment, String id, String rating) {
 		super();
 		this.image = image;
 		this.name = name;
 		this.comment = comment;
 		this.id = id;
-		this.street = street;
-		this.city = city;
-		this.state = state;
+	
 		this.rating = rating;
 	}
 
@@ -59,27 +58,5 @@ public class BarModel {
 		this.id = id;
 	}
 
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
+	
 }

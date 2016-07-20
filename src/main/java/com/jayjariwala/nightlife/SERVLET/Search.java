@@ -1,7 +1,9 @@
 package com.jayjariwala.nightlife.SERVLET;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import org.json.simple.JSONArray;
 
 import com.jayjariwala.nightlife.BO.BarBO;
 import com.jayjariwala.nightlife.BO.YelpAPI;
+import com.jayjariwala.nightlife.MODEL.BarModel;
 
 /**
  * Servlet implementation class Search
@@ -50,7 +53,13 @@ public class Search extends HttpServlet {
 		search[1]=searchString;
 		JSONArray businesses=api.search(search);
 		BarBO bo=new BarBO();
-		bo.getBarList(businesses);
+		ArrayList<BarModel> list=bo.getBarList(businesses);
+		
+		RequestDispatcher dispatch=request.getRequestDispatcher("index.jsp");
+		request.setAttribute("list",list);
+		dispatch.forward(request, response);
+		
+		
 		
 	
 	}
