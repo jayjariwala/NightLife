@@ -27,7 +27,7 @@ request.getSession().removeAttribute("requestToken");
 } catch (TwitterException e) {
 throw new ServletException(e);
 }
-response.sendRedirect("twitter.jsp");
+response.sendRedirect("index.jsp");
 }
 }
 

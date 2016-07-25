@@ -1,6 +1,9 @@
 <%@page import="com.jayjariwala.nightlife.MODEL.BarModel" %>
 <%@page import="java.util.ArrayList" %>
+<%@ page import="twitter4j.Twitter"%>
 <% ArrayList<BarModel> list=(ArrayList<BarModel>) request.getAttribute("list"); %>
+<% Twitter twitter = (Twitter) request.getSession().getAttribute("twitter"); %>
+<%String searchKeyword=(String) request.getAttribute("searchkeyword"); %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +16,7 @@
 
       <link rel="stylesheet" type="text/css" href="css/style.css">
       <link rel="stylesheet" type="text/css" href="css/grid.css">
-      <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+      
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -40,10 +43,10 @@
 <br/>
 <br/>
 
-<form method="post" id="target" action="Search">
+<form method="post" action="Search" id="target">
 
 
-   <div class="col-lg-10">
+   <div class="col-lg-10 ">
   <input id="textinput" name="searchInput" type="text" placeholder="Your Area Name" class="form-control input-md" required>
   </div>
   <div class="col-lg-2">
@@ -52,77 +55,37 @@
 </form> <br/><br/>
 
 <br/>
-</div>
 
+  <div class="list-group ">
+  
+  
 
-  <!--<div class="list-group list">
-
-  <div class="row">
-    <div class="col-lg-2">
-  <center><img src="https://s3-media2.fl.yelpcdn.com/bphoto/mP1rPIieZD_UKqDO18Oa3Q/ms.jpg"> </center>
-  </div>
-  <div class="col-lg-2">
-  <h4>The Rock Bar Grill </h4>
-
-  </div>
-
-  <div class="col-lg-7">
-  <i>Came here on a football Sunday to watch some basketball. We went in the late afternoon and it was surprisingly not completely packed. The bartender was..."</i>
-  </div>
-</div> -->
-<!--
-<div class="row">
-  <div class="col-sm-6 col-md-3 tile">
-    <div class="thumbnail">
-      <img src="https://s3-media2.fl.yelpcdn.com/bphoto/mP1rPIieZD_UKqDO18Oa3Q/ms.jpg" width="100%">
-    </div>
-      <div class="caption">
-        <center>
-          <h3>Thumbnail label</h3>
-        </center>
-        <p>Where do I start? Ah, yes. I work as an intern near by and pass by almost every day to go the train, and I always see a paper sign taped to the door that...</p>
-        <center>
-     <center><span class="btn btn-default badge">Going! <span class="badge" style="color:orange">0</span></span></center>
-        </center>
-
-      </div>
-
-</div>
-
+ <% if(list!=null){
+	 	
+	 	if(twitter!=null)
+	 	{
+	 		for(BarModel model:list)
+	 		 {
+	 			 out.println("<div class='row list'><form action='UserAction' method='post'><input type='hidden' name='barId' value='"+model.getId()+"'><input type='hidden' name='searchkeyword' value='"+searchKeyword+"'><div class='col-lg-2'><center><span class='photo'><img src='"+model.getImage()+"'></span></center></div><div class='col-lg-2'><a href='"+model.getUrl()+"' target='_blank'><center><h4>"+model.getName()+"</h4></center></a> <center><button class='btn btn-default'>Going! <span class='badge' style='color:orange'>"+model.getCount()+"</span></button></center></div> <div class='col-lg-7'><i>\""+model.getComment()+"\"</i><br/><img src='"+model.getRating()+"' /></form></div></div>");
+	 		 }		
+	 	}
+	 	else
+	 	{
+	 		for(BarModel model:list)
+	 		 {
+	 			 out.println("<div class='row list'><form action='TwitterLoginServlet' method='get'><div class='col-lg-2'><center><span class='photo'><img src='"+model.getImage()+"'></span></center></div><div class='col-lg-2'><a href='"+model.getUrl()+"' target='_blank'><center><h4>"+model.getName()+"</h4></center></a> <center><button class='btn btn-default'>Going! <span class='badge' style='color:orange'>"+model.getCount()+"</span></button></center></div> <div class='col-lg-7'><i>\""+model.getComment()+"\"</i><br/><img src='"+model.getRating()+"' /></form></div></div>");
+	 		 }
+	 		
+	 	}
+	 
+	 
+ }
+	 %>
+ 
+ 
+  
 
 
 </div>
--->
-<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 180 }'>
-
-
-<!--      --------->
-
-<% if(list!=null)
-{
-	for(BarModel model:list)
-	{
-		out.print("<div class='grid-item'><img src='"+model.getImage()+"' width='156px;'><br/><center><u>"+model.getName()+"</u></center><center><img src='"+model.getRating()+"'></center><br/>\""+model.getComment()+"\"<br/><span style='color:orange'>-----------------------------</span><br/><center><button class='btn btn1'> <span style='font-size:10px'><span class='badge' style='color:orange'>0</span> Going</span></button> </center><br/></div>");
-	}
-}
-	
-	
-	%>
-
-
-     
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-
 
 </html>

@@ -1,50 +1,34 @@
 body
 {
-  color:white;
-  background-color: black;
+  color:black;
+  background-color: #722F37;
   font-family: 'Kadwa', serif;
 }
 h1
 {
   font-size:50px;
+  color:white;
 }
 .list
 {
-
-  border: ridge;
-  border-color: orange;
+  background-color: white;
   padding: 8px;
-  border-radius: 10px 10px 50px 50px;
-}
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 10px 10px;
+  margin:12px;
+  }
+.list:hover{
 
-/*
-
-h3
-{
-  color:black;
+box-shadow: 0 10px 10px 0 black;
+font-size: 20px;
 }
-img{
-  opacity: 0.5;
-}
-
-.thumbnail
-{
-  background-color: black;
+.photo{
+border: groove;
   border-color: orange;
-
+ 
+  
 }
-.caption
+.image
 {
   background-color: white;
-  margin-top: -20px;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  padding: 10px;
-  color:black;
-
 }
-.tile
-{
-  padding: 20px;
-}
-*/
