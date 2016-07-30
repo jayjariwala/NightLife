@@ -1,5 +1,6 @@
 package com.jayjariwala.nightlife.BO;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,6 +16,7 @@ public class BarBO {
 	nightlifeDAO dao=new nightlifeDAO();
 	public ArrayList<BarModel> getBarList(JSONArray Businesses)
 	{
+		BarBO bo=new BarBO();
 		for(int i=0;i< Businesses.size();i++)
 		{
 			JSONObject BarObject=(JSONObject) Businesses.get(i);
@@ -25,18 +27,31 @@ public class BarBO {
 			String BarImage=(String) BarObject.get("image_url");
 			String name=(String)BarObject.get("name");
 			String url=(String)BarObject.get("url");
+			String random=bo.randomString();
 			int count=dao.getbarcount(BarID);
 			System.out.println(BarObject);
-			model=new BarModel( BarImage, name, comments, BarID, rating,url,count);
+			model=new BarModel( BarImage, name, comments, BarID, rating,url,count,random);
 			list.add(model);
 		}
 		return list;
 	}
-	public void goingtoclub(NightlifeModel model)
+	public String randomString()
+	{
+		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 20; i++) {
+		    char c = chars[random.nextInt(chars.length)];
+		    sb.append(c);
+		}
+		String output = sb.toString();
+		return output;
+	}
+	public int goingtoclub(NightlifeModel model)
 	{
 		nightlifeDAO dao=new nightlifeDAO();
 		int i=dao.goingclub(model);
-		System.out.println("status:"+i);
+		return dao.getbarcount(model.getClubid());
 		
 	}
 }

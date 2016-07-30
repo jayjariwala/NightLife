@@ -9,24 +9,47 @@ h1
   font-size:50px;
   color:white;
 }
+button{
+  background-color: skyblue;
+}
+.banner
+{
+
+  background:url(https://s31.postimg.org/79silr2cb/glasses.jpg) no-repeat center ;
+  	background-size:cover;
+  	height:450px;
+  	padding-top:50px;
+  	padding-bottom:50px;
+  	text-align:center;
+
+}
+#glasses
+{
+  border: 0;
+  height: 200px;
+  margin:-20px;
+}
+#rating
+{
+	border:0;
+}
 .list
 {
   background-color: white;
   padding: 8px;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 10px 10px;
-  margin:12px;
+  margin:10px;
   }
 .list:hover{
 
 box-shadow: 0 10px 10px 0 black;
 font-size: 20px;
 }
-.photo{
+img{
 border: groove;
-  border-color: orange;
- 
-  
+  border-color: black;
+
 }
 .image
 {

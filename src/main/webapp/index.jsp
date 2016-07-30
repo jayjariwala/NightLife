@@ -37,9 +37,11 @@
 
   <div class="container">
 <center><h1>Plans Tonight?</h1></center>
+<center>
+  <img src="img/drinks.png"  id="glasses"/>
+</center>
 
-<center><i class="fa fa-map-marker fa-5x" style="color:white"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-car fa-5x" style="color:white"></i>&nbsp;&nbsp;<i class="fa fa-glass fa-5x" style="color:white"></i></center> <br/><br/>
-<h4 style="color:orange"><center>See Which Bar are hoppin' tonight and RSVP ahead of time! <br> Remember: Take a cab and drink responsibly</center></h4>
+<h4 style="color:skyblue"><center>See Which Bar are hoppin' tonight and RSVP ahead of time! <br> Remember: Take a cab and drink responsibly</center></h4>
 <br/>
 <br/>
 
@@ -58,6 +60,7 @@
 
   <div class="list-group ">
   
+
   
 
  <% if(list!=null){
@@ -66,21 +69,36 @@
 	 	{
 	 		for(BarModel model:list)
 	 		 {
-	 			 out.println("<div class='row list'><form action='UserAction' method='post'><input type='hidden' name='barId' value='"+model.getId()+"'><input type='hidden' name='searchkeyword' value='"+searchKeyword+"'><div class='col-lg-2'><center><span class='photo'><img src='"+model.getImage()+"'></span></center></div><div class='col-lg-2'><a href='"+model.getUrl()+"' target='_blank'><center><h4>"+model.getName()+"</h4></center></a> <center><button class='btn btn-default'>Going! <span class='badge' style='color:orange'>"+model.getCount()+"</span></button></center></div> <div class='col-lg-7'><i>\""+model.getComment()+"\"</i><br/><img src='"+model.getRating()+"' /></form></div></div>");
+	 			 %> <script>
+	 	
+	 			 
+	 			 function <%=model.getRandom()%>()
+	 			 {
+	 				  $.post("UserAction",{
+		 			    	 barId:"<%=model.getId()%>"
+		 			     	
+		 			     }, function(responseText) {   
+		 			         $(".<%=model.getId()%>").text(responseText);        
+		 			     });
+	 				 
+	 			 }
+	 			 
+	 			 </script>
+	 			 <% 
+	 			 out.println("<div class='row list'><form ><div class='col-lg-2'><center><span class='photo'><img src='"+model.getImage()+"'></span></center></div><div class='col-lg-2'><a href='"+model.getUrl()+"' target='_blank'><center><h4>"+model.getName()+"</h4></center></a> <center><span class='button btn btn-default' onClick='"+model.getRandom()+"()'>Going! <span class='"+model.getId()+" badge' style='color:skyblue'>"+model.getCount()+"</span></span></center></div> <div class='col-lg-7'><i>\""+model.getComment()+"\"</i><br/><img src='"+model.getRating()+"' id='rating' /></form></div></div>");
 	 		 }		
 	 	}
 	 	else
 	 	{
 	 		for(BarModel model:list)
 	 		 {
-	 			 out.println("<div class='row list'><form action='TwitterLoginServlet' method='get'><div class='col-lg-2'><center><span class='photo'><img src='"+model.getImage()+"'></span></center></div><div class='col-lg-2'><a href='"+model.getUrl()+"' target='_blank'><center><h4>"+model.getName()+"</h4></center></a> <center><button class='btn btn-default'>Going! <span class='badge' style='color:orange'>"+model.getCount()+"</span></button></center></div> <div class='col-lg-7'><i>\""+model.getComment()+"\"</i><br/><img src='"+model.getRating()+"' /></form></div></div>");
+	 			 out.println("<div class='row list'><form action='TwitterLoginServlet' method='get'><div class='col-lg-2'><center><span class='photo'><img src='"+model.getImage()+"'></span></center></div><div class='col-lg-2'><a href='"+model.getUrl()+"' target='_blank'><center><h4>"+model.getName()+"</h4></center></a> <center><button class='btn btn-default'>Going! <span class='badge' style='color:skyblue'>"+model.getCount()+"</span></button></center></div> <div class='col-lg-7'><i>\""+model.getComment()+"\"</i><br/><img src='"+model.getRating()+"' id='rating' /></form></div></div>");
 	 		 }
 	 		
 	 	}
 	 
 	 
- }
-	 %>
+ } %>
  
  
   

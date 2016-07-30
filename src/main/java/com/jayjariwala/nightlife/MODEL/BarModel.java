@@ -2,7 +2,15 @@ package com.jayjariwala.nightlife.MODEL;
 
 public class BarModel {
 	
-	private String image,name,comment,id,street,city,state,rating,url;
+	private String image,name,comment,id,street,city,state,rating,url,random;
+	public String getRandom() {
+		return random;
+	}
+
+	public void setRandom(String random) {
+		this.random = random;
+	}
+
 	private int count;
 
 	public int getCount() {
@@ -25,7 +33,7 @@ public class BarModel {
 	{
 	}
 
-	public BarModel(String image, String name, String comment, String id, String rating,String url,int count) {
+	public BarModel(String image, String name, String comment, String id, String rating,String url,int count,String random) {
 		super();
 		this.image = image;
 		this.name = name;
@@ -34,6 +42,7 @@ public class BarModel {
 		this.url=url;
 		this.rating = rating;
 		this.count=count;
+		this.random=random;
 	}
 
 	public String getRating() {

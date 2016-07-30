@@ -18,7 +18,7 @@ import com.jayjariwala.nightlife.MODEL.NightlifeModel;
 /**
  * Servlet implementation class UserAction
  */
-@WebServlet("/UserAction")
+@WebServlet("/UserAction/*")
 public class UserAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,8 +35,8 @@ public class UserAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dis=request.getRequestDispatcher("index.jsp");
-		dis.forward(request, response);
+		//RequestDispatcher dis=request.getRequestDispatcher("index.jsp");
+		//dis.forward(request, response);
 	}
 
 	/**
@@ -44,20 +44,23 @@ public class UserAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
 		NightlifeModel model=new NightlifeModel();
 		BarBO bo=new BarBO();
 		String barId=request.getParameter("barId");
-		String keyword=request.getParameter("searchkeyword");
+	//	String keyword=request.getParameter("searchkeyword");
 		Twitter twitter=(Twitter) request.getSession(false).getAttribute("twitter");
-		System.out.println("barId:"+barId);
+		System.out.println("barId recieeved:"+barId);
 		try {
 			System.out.println("twitterID:"+twitter.getId());
 			model.setClubid(barId);
 			model.setUserid(""+twitter.getId());
-			bo.goingtoclub(model);
-			RequestDispatcher dis=request.getRequestDispatcher("Search");
-			request.setAttribute("keyword", keyword);
-			dis.forward(request, response);
+			int clubcount=bo.goingtoclub(model);
+			response.getWriter().write(""+clubcount);
+	//		RequestDispatcher dis=request.getRequestDispatcher("Search");
+		//	request.setAttribute("keyword", keyword);
+		//	dis.forward(request, response);
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

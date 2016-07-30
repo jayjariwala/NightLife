@@ -36,8 +36,8 @@ public class Search extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dis=request.getRequestDispatcher("index.jsp");
-		dis.forward(request, response);
+		//RequestDispatcher dis=request.getRequestDispatcher("index.jsp");
+		//dis.forward(request, response);
 	}
 
 	/**
@@ -65,19 +65,7 @@ public class Search extends HttpServlet {
 		catch(Exception e)
 		{
 		
-			String keyword=(String) request.getAttribute("keyword");
-			YelpAPI api=new YelpAPI();
-			String [] search = new String[2];
-			search[0]="--location";
-			search[1]=keyword;
-			JSONArray businesses=api.search(search);
-			BarBO bo=new BarBO();
-			ArrayList<BarModel> list=bo.getBarList(businesses);
-			
-			RequestDispatcher dispatch=request.getRequestDispatcher("index.jsp");
-			request.setAttribute("list",list);
-			request.setAttribute("searchkeyword",keyword);
-			dispatch.forward(request, response);
+
 			
 		}
 		

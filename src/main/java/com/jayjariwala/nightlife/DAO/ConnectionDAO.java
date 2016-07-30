@@ -10,6 +10,9 @@ public class ConnectionDAO {
 	final String serverURL="jdbc:mysql://127.7.77.130:3306/nightlife";
 	final String ServerUserName="adminhVxMJ81";
 	final String serverpass="QuBeRwRNIHMq";	
+//	final String serverURL="jdbc:mysql://localhost/nightlife";
+//	final String ServerUserName="root";
+//	final String serverpass="no1canhearme";	
 	
 	public Connection openconnection()
 	{
